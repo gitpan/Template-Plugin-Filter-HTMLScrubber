@@ -18,7 +18,7 @@
 #     NO_META => q[1]
 #     PL_FILES => {  }
 #     PREREQ_PM => { Test::Perl::Critic=>q[0], HTML::Scrubber=>q[0], Test::Pod::Coverage=>q[0], Template=>q[0], Template::Plugin::Filter=>q[0], Carp=>q[0], Test::Pod=>q[0] }
-#     VERSION => q[0.01]
+#     VERSION => q[0.02]
 #     dist => { PREOP=>q[$(PERL) -I. -MModule::Install::Admin -e "dist_preop(q($(DISTVNAME)))"] }
 #     test => { TESTS=>q[t/00.load.t t/01.use-plugin-with-tt.t t/02.use-plugin-expand.t t/perlcritic.t t/pod-coverage.t t/pod.t] }
 
@@ -60,11 +60,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Template::Plugin::Filter::HTMLScrubber
 NAME_SYM = Template_Plugin_Filter_HTMLScrubber
-VERSION = 0.01
+VERSION = 0.02
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_01
+VERSION_SYM = 0_02
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.01
+XS_VERSION = 0.02
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -250,7 +250,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Template-Plugin-Filter-HTMLScrubber
-DISTVNAME = Template-Plugin-Filter-HTMLScrubber-0.01
+DISTVNAME = Template-Plugin-Filter-HTMLScrubber-0.02
 
 
 # --- MakeMaker macro section:
@@ -755,7 +755,7 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd:
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0,01,0,0">' > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0,02,0,0">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <TITLE>$(DISTNAME)</TITLE>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>TT Filter using HTML::Scrubber</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>Yu Isobe &lt;yupug@cpan.org&gt;</AUTHOR>' >> $(DISTNAME).ppd

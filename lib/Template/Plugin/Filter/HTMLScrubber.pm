@@ -3,7 +3,7 @@ package Template::Plugin::Filter::HTMLScrubber;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Template::Plugin::Filter;
 use base qw( Template::Plugin::Filter );
@@ -52,6 +52,21 @@ sub init {
 						'ondblclick' => 0,
 						'onerror' => 0,
 						'onfocus' => 0,
+						'onkeydown' => 0,
+						'onkeypress' => 0,
+						'onkeyup' => 0,
+						'onload' => 0,
+						'onmousedown' => 0,
+						'onmousemove' => 0,
+						'onmouseout' => 0,
+						'onmouseover' => 0,
+						'onmouseup' => 0,
+						'onreset' => 0,
+						'onselect' => 0,
+						'onsubmit' => 0,
+						'onunload' => 0,
+						'src' => 0,
+						'type' => 0,
                     }
                 ],
                 comment => 1,
@@ -124,7 +139,7 @@ Template::Plugin::Filter::HTMLScrubber - Filter Plugin for using HTML::Scrubber 
 
 =head1 VERSION
 
-0.01
+0.02
 
 =head1 SYNOPSIS
 
