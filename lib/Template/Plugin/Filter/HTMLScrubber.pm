@@ -3,7 +3,7 @@ package Template::Plugin::Filter::HTMLScrubber;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Template::Plugin::Filter;
 use base qw( Template::Plugin::Filter );
@@ -139,7 +139,7 @@ Template::Plugin::Filter::HTMLScrubber - Filter Plugin for using HTML::Scrubber 
 
 =head1 VERSION
 
-0.02
+0.03
 
 =head1 SYNOPSIS
 
@@ -157,7 +157,7 @@ The default usage.
 	my $html_text = q[
 	<img src="http://your.favorite.photo.jpg" />
 	<hr>
-	<scritp
+	<script>alert('NyanPome!')</script>
 	];
 
 	[% USE Filter.HTMLScrubber %]
@@ -166,7 +166,7 @@ The default usage.
 Another function of this plugin module enable you to specify allow/deny tags at every part.
 
 	#deny 'img' tag from default scrub level.
-    [% html_text_deny_image | html_scrubber(['-img']) %]
+	[% html_text_deny_image | html_scrubber(['-img']) %]
 
 	#allow 'script' and 'style' tags to default scrub level.
 	[% html_text_loose | html_scrubber(['+script' , '+style']) %]
@@ -174,44 +174,44 @@ Another function of this plugin module enable you to specify allow/deny tags at 
 You can setup the scrubbed tags, then should set "base" config.
 
 	my $setup = {
-			base => {
-				allow => [qw| br hr b a u del i |],
-                rules => [
-                    script => 0,
-                    span => {
-                        style => qr{^(?!(?:java)?script)}i,
-                        class => qr{^(?!(?:java)?script)}i,
-                        '*' => 0,
-                    },
-                    img => {
-                            src => qr{^(?!(?:java)?script)}i,
-                            alt => qr{^(?!(?:java)?script)}i,
-                            title => qr{^(?!(?:java)?script)}i,
-                            class => qr{^(?!(?:java)?script)}i,
-                            '*' => 0,
-                    },
-                ],
-                default => [
-                    1 => {
-                        '*' => 1,
-                        'href' => qr{^(?!(?:java)?script)}i,
-                        'src' => qr{^(?!(?:java)?script)}i,
-                    }
-                ],
-			}
-		};
+		base => {
+			allow => [qw| br hr b a u del i |],
+			rules => [
+				script => 0,
+				span => {
+					style => qr{^(?!(?:java)?script)}i,
+					class => qr{^(?!(?:java)?script)}i,
+					'*' => 0,
+				},
+				img => {
+					src => qr{^(?!(?:java)?script)}i,
+					alt => qr{^(?!(?:java)?script)}i,
+					title => qr{^(?!(?:java)?script)}i,
+					class => qr{^(?!(?:java)?script)}i,
+					'*' => 0,
+				},
+			],
+			default => [
+				0 => {
+					'*' => 1,
+					'href' => qr{^(?!(?:java)?script)}i,
+					'src' => qr{^(?!(?:java)?script)}i,
+				}
+			],
+		}
+	};
 
-    [% USE Filter.HTMLScrubber setup  %]
+	[% USE Filter.HTMLScrubber setup  %]
 	[% html_text | html_scrubber %]
 
 Furthermore, you can specify various level of scrubbing.
 When you call html_scrubber,you code the level.
 
 	my $setup = {
-			base => .....,
-			strict => .....
-			loose => .....
-		};
+		base => .....,
+		strict => .....
+		loose => .....
+	};
 
 	[% USE Filter.HTMLScrubber setup  %]
 	[% html_text1 | html_scrubber('strict') %]
@@ -243,7 +243,7 @@ L<http://rt.cpan.org>.
 
 =head1 SEE ALSO
 
-L<HTML::Scrubber|Template::Plugin::Filter>
+L<HTML::Scrubber>, L<HTML::Plugin::Filter>
 
 =cut
 
